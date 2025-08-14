@@ -1,0 +1,20 @@
+# 8월 13일 #
+* (task) new_generator에 대해서 cluster 할당하고 DB에 저장하기
+1. data__clusters라는 테이블을 만들고, 칼럼은 cluster_id, parameters, active, cluster_datetime으로 설정한다.
+2. data__generators라는 테이블에서 generator_id, latitude_degree, longitude_degree를 추출하고 data__cluster_cids 테이블에서는 cid, cluster_id를 추출한다.
+3. data__generators의 generator_id와 data__cluster_cids의 cid를 비교해서 cid에 없는 generator_id들을 추출한다.
+4. 이들의 위/경/고도의 값과 centroid를 비교하여 clustering을 한다.
+4. centroid 값들은 data__clusters라는 테이블에 넣는다.
+cluster_id, parameters, active, create_datetime
+5. 그리고 data__cluster_generator_ids라는 테이블을 생성해서
+모든 generator_id와 그들의 cluster_id 값을 입력한다.
+
+
+# 8월 14일 # 
+* Table은 데이터가 있는 객체들, Views는 데이터가 없는 객체들을 말함. Materialized Views는 query가 무거운 경우, Views의 결과를 저장함.
+* duckdb는 ST_Transform함수를 통해 특정 EPSG 간의 변환이 가능함.
+* varchar에서 var는 가변적이라는 뜻. uuid는 고정된 length이기 때문에 char(36)으로 설정해도 됨.
+* jinja2에는 prefix 변수를 통해 코드 재사용이 가능함.
+* 공통된 부분 선택 -> command+D
+* (task) capacity_kwh랑 inst_type 고려해서 clustering하기
+1. 
